@@ -1,13 +1,8 @@
 <?php
-
-// crit chance = player luck+player level - enemy level
-//random = rand(1,10) x 9 + 1
-
-
 //Functions to set up characters
 function initialiseCharacter($name) {
-    $level= rand(1,50);
-    $hp= $level*123;
+    $level= rand(14,25);
+    $hp= $level*223;
     $atk=$level*1.4;
 return [
     'name' => $name,
@@ -23,12 +18,12 @@ $enemy = initialiseCharacter("Dire Wolf");
 
 //Attack
 function attack($attacker, &$target) {
-    $basedamage = $attacker['atk']*rand(1,100);
+    $basedamage = $attacker['atk']*rand(1,20);
     $damage = $basedamage;
     // echo "\nDEBUG: BASE DAMAGE " . $damage . "\n"; //DEBUG CODE
     if (criticalHit($attacker, $target)){
         $damage = $basedamage *1.5;
-        echo "\n" . $attacker ['name'] . " critically hits " . $target['name'] .  " for " . number_format($damage) . " damage! (" . number_format($basedamage) . " x2" . ") \n";
+        echo "\n" . $attacker ['name'] . " critically hits " . $target['name'] .  " for " . number_format($damage) . " damage! (" . number_format($basedamage) . " x1.5" . ") \n";
     } else {
     echo "\n" . $attacker ['name'] . " attacks " . $target['name'] .  " for " . number_format($damage) . " damage.\n";
     }
